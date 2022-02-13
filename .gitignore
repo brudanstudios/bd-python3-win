@@ -4,15 +4,6 @@ __pycache__/
 !bin/**/.pyc
 *$py.class
 
-# Eclipse / PyDev projects
-.project
-.pydevproject
-.settings/
-.idea/
-
-# virtual environment
-venv/
-
 # setuptools
 dist/
 build/
@@ -24,4 +15,3 @@ build/
 Scripts/*
 
 Lib/site-packages/*
-!Lib/site-packages/sitecustomize.py
