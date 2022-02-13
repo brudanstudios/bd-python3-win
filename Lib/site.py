@@ -75,7 +75,7 @@ import builtins
 import _sitebuiltins
 
 # Prefixes for site-packages; add additional prefixes like /usr/local here
-PREFIXES = [sys.exec_prefix]
+PREFIXES = [sys.prefix, sys.exec_prefix]
 # Enable per user site-packages directory
 # set it to False to disable the feature or True to force the feature
 ENABLE_USER_SITE = None
@@ -458,13 +458,6 @@ def venv(known_paths):
     env = os.environ
     if sys.platform == 'darwin' and '__PYVENV_LAUNCHER__' in env:
         executable = sys._base_executable = os.environ['__PYVENV_LAUNCHER__']
-    elif sys.platform == 'win32' and '__PYVENV_LAUNCHER__' in env:
-        executable = sys.executable
-        import _winapi
-        sys._base_executable = _winapi.GetModuleFileName(0)
-        # bpo-35873: Clear the environment variable to avoid it being
-        # inherited by child processes.
-        del os.environ['__PYVENV_LAUNCHER__']
     else:
         executable = sys.executable
     exe_dir, _ = os.path.split(os.path.abspath(executable))
